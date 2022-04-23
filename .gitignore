@@ -352,3 +352,12 @@ MigrationBackup/
 idea/
 
 cache/
+
+build/
+
+!/Server/resources/roleplay/
+/Server/resources/roleplay/*
+/Server/resources/roleplay/client/view
+!/Server/resources/roleplay/client/
+!/Server/resources/roleplay/resource.cfg
+/Server/resources/roleplay/client/main.js
