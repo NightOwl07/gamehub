@@ -7,7 +7,5 @@ namespace TTT.Core.Contracts.Interfaces.Entities
     public interface ITownPlayer : IPlayer, IAsyncConvertible<ITownPlayer>
     {
         Account Account { get; set; }
-
-        Character Character { get; set; }
     }
 }

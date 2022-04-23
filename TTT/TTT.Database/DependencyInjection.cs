@@ -9,9 +9,6 @@ namespace TTT.Database
         public static IServiceCollection AddDatabaseServiceCollection(this IServiceCollection services)
         {
             services.AddSingleton<IAccountRepository, AccountRepository>();
-            services.AddSingleton<ICharacterRepository, CharacterRepository>();
-            services.AddSingleton<IInventoryItemRepository, InventoryItemRepository>();
-            services.AddSingleton<IInventoryRepository, InventoryRepository>();
             return services;
         }
     }

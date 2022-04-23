@@ -9,8 +9,6 @@ namespace TTT.Database.Contracts.Models
     [BsonCollection("accounts")]
     public class Account : IBaseDatabaseItem
     {
-        public int CharacterId { get; set; }
-
         public string Email { get; set; }
 
         public string Username { get; set; }
@@ -27,13 +25,10 @@ namespace TTT.Database.Contracts.Models
 
         public DateTime LastLogin { get; set; }
 
-        public int MaxCharactersAllowed { get; set; }
-
         public bool CanResetPassword { get; set; }
 
-        public bool Whitelisted { get; set; }
-
         public PermissionLevel PermissionLevel { get; set; }
+
         public ObjectId Id { get; set; }
     }
 }

@@ -16,25 +16,5 @@ namespace TTT.Database.Repositories
         {
             this._logger = logger;
         }
-
-        public OperationResult<IEnumerable<Character>> GetCharactersFromAccount(Account account)
-        {
-            OperationResult<IEnumerable<Character>> result = new();
-
-            try
-            {
-               // result.Result = (from accounts in this._context.Accounts
-               //     join characters in this._context.Characters
-               //         on account.Id equals characters.AccountId
-               //     select characters).ToList();
-            }
-            catch (Exception ex)
-            {
-                this._logger?.LogError($"Error fetching characters for account #{account?.Id}\n{ex}");
-                result.AddError(ex);
-            }
-
-            return result;
-        }
     }
 }

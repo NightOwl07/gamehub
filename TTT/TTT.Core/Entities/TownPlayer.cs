@@ -24,8 +24,6 @@ namespace TTT.Core.Entities
 
         [JsonIgnore] public Account Account { get; set; }
 
-        [JsonIgnore] public Character Character { get; set; }
-
         public ITownPlayer ToAsync(IAsyncContext asyncContext)
         {
             return new Async(this, asyncContext);
@@ -62,13 +60,6 @@ namespace TTT.Core.Entities
             {
                 get => this.BaseObject.Account;
                 set => this.BaseObject.Account = value;
-            }
-
-            [JsonIgnore]
-            public Character Character
-            {
-                get => this.BaseObject.Character;
-                set => this.BaseObject.Character = value;
             }
 
             public ITownPlayer ToAsync(IAsyncContext asyncContext)
