@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+        <OutputPath>../../Server/resources/roleplay</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\TTT.Contracts\TTT.Contracts.csproj"/>
+        <ProjectReference Include="..\TTT.Database.Contracts\TTT.Database.Contracts.csproj"/>
+    </ItemGroup>
+
+</Project>

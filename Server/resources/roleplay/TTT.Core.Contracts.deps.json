@@ -1,0 +1,171 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "TTT.Core.Contracts/1.0.0": {
+        "dependencies": {
+          "AltV.Net": "6.1.6",
+          "AltV.Net.Async": "6.1.6",
+          "Newtonsoft.Json": "13.0.1",
+          "TTT.Contracts": "1.0.0",
+          "TTT.Database.Contracts": "1.0.0",
+          "TTT.EntitySync": "1.0.0"
+        },
+        "runtime": {
+          "TTT.Core.Contracts.dll": {}
+        }
+      },
+      "AltV.Net/6.1.6": {
+        "runtime": {
+          "lib/net5.0/AltV.Net.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AltV.Net.Async/6.1.6": {
+        "dependencies": {
+          "AltV.Net": "6.1.6",
+          "System.Threading.Channels": "5.0.0"
+        },
+        "runtime": {
+          "lib/net5.0/AltV.Net.Async.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AltV.Net.EntitySync/1.13.0": {
+        "dependencies": {
+          "System.Threading.Channels": "5.0.0"
+        },
+        "runtime": {
+          "lib/net5.0/AltV.Net.EntitySync.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "MongoDB.Bson/2.13.2": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/MongoDB.Bson.dll": {
+            "assemblyVersion": "2.13.2.0",
+            "fileVersion": "2.13.2.0"
+          }
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/5.0.0": {},
+      "System.Threading.Channels/5.0.0": {},
+      "TTT.Contracts/1.0.0": {
+        "runtime": {
+          "TTT.Contracts.dll": {}
+        }
+      },
+      "TTT.Database.Contracts/1.0.0": {
+        "dependencies": {
+          "AltV.Net": "6.1.6",
+          "MongoDB.Bson": "2.13.2",
+          "TTT.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "TTT.Database.Contracts.dll": {}
+        }
+      },
+      "TTT.EntitySync/1.0.0": {
+        "dependencies": {
+          "AltV.Net": "6.1.6",
+          "AltV.Net.EntitySync": "1.13.0"
+        },
+        "runtime": {
+          "TTT.EntitySync.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TTT.Core.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AltV.Net/6.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZuOcZXjb27JUO9me144N/TGXHbGR4yM7mxlQ4WNbaA8PnD0mfQF10O0KTImww3+BI+9ubgMhYgLn516yvpuRaw==",
+      "path": "altv.net/6.1.6",
+      "hashPath": "altv.net.6.1.6.nupkg.sha512"
+    },
+    "AltV.Net.Async/6.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5JqJnOEES0FY4UUvmUd7aiHzUFqdx+B/0iDsCqZ+Bx2eNYTvIc0abhdmU/Jn0QozpiiCHJ306t51B0LOG+3OHw==",
+      "path": "altv.net.async/6.1.6",
+      "hashPath": "altv.net.async.6.1.6.nupkg.sha512"
+    },
+    "AltV.Net.EntitySync/1.13.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-b0DkilzzJqXd0PTI7h9f/k5OVDKn60h95NU3z13y3Nz+pxlgS2V1lSE8MbVwqkdFr2Jl+3dZUwRAOs9Ic77Sbg==",
+      "path": "altv.net.entitysync/1.13.0",
+      "hashPath": "altv.net.entitysync.1.13.0.nupkg.sha512"
+    },
+    "MongoDB.Bson/2.13.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qY9271GFCYLA8OB3MdQC8clJh9wnh65gcxUa5Skwh2xYryv21YAHx/VOvv4ILpkb1NhIVgy3LBQhVBldwLaqNg==",
+      "path": "mongodb.bson/2.13.2",
+      "hashPath": "mongodb.bson.2.13.2.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZD9TMpsmYJLrxbbmdvhwt9YEgG5WntEnZ/d1eH8JBX9LBp+Ju8BSBhUGbZMNVHHomWo2KVImJhTDl2hIgw/6MA==",
+      "path": "system.runtime.compilerservices.unsafe/5.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
+    },
+    "System.Threading.Channels/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RLBIxntLaG9pRmmuVDwY1kc8Bvp/FQzSxPU+19VekkScKkWtVP9r8bLhm28ama3usc816UBrmkg3vv3jUea/hw==",
+      "path": "system.threading.channels/5.0.0",
+      "hashPath": "system.threading.channels.5.0.0.nupkg.sha512"
+    },
+    "TTT.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TTT.Database.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TTT.EntitySync/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
