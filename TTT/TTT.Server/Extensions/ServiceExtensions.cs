@@ -50,7 +50,7 @@ namespace TTT.Server.Extensions
 
             foreach (TypeInfo type in typesOfInterface)
             {
-                _logger.LogTrace(
+                _logger.LogDebug(
                     $"Registering {type.Name} (implements interface {typeof(T).Name}) with lifetime {Enum.GetName(lifetime)}");
 
                 if (services.Any(e => e.ServiceType == type))
@@ -81,7 +81,7 @@ namespace TTT.Server.Extensions
 
             foreach (Type type in typesOfClasses)
             {
-                _logger.LogTrace(
+                _logger.LogDebug(
                     $"Registering {type.Name} (inherits class {typeof(T).Name}) with lifetime {Enum.GetName(lifetime)}");
 
                 if (services.Any(e => e.ServiceType == type))
@@ -115,13 +115,13 @@ namespace TTT.Server.Extensions
 
         public static void InstanciateStartupScripts(this ServiceProvider provider)
         {
-            _logger.LogTrace("Dependency Injection: Instanciating registered scripts");
+            _logger.LogDebug("Dependency Injection: Instanciating registered scripts");
 
             foreach (Type type in servicesToInstanciate)
             {
                 _ = provider.GetService(type);
 
-                _logger.LogTrace($"Instanciated {type.Name}");
+                _logger.LogDebug($"Instanciated {type.Name}");
             }
         }
     }
