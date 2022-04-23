@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <OutputPath>../../Server/resources/roleplay</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AltV.Net" Version="6.1.6"/>
-        <PackageReference Include="AltV.Net.EntitySync" Version="1.13.0"/>
+        <PackageReference Include="AltV.Net" Version="9.0.4" />
+        <PackageReference Include="AltV.Net.EntitySync" Version="1.13.0" />
     </ItemGroup>
 
 </Project>

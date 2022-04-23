@@ -1,27 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <OutputPath>../../Server/resources/roleplay</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Interfaces\"/>
-        <Folder Include="Menu"/>
+        <Folder Include="Interfaces\" />
+        <Folder Include="Menu" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="AltV.Net" Version="6.1.6"/>
-        <PackageReference Include="AltV.Net.Async" Version="6.1.6"/>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+        <PackageReference Include="AltV.Net" Version="9.0.4" />
+        <PackageReference Include="AltV.Net.Async" Version="9.0.4" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\TTT.Contracts\TTT.Contracts.csproj"/>
-        <ProjectReference Include="..\TTT.Database.Contracts\TTT.Database.Contracts.csproj"/>
-        <ProjectReference Include="..\TTT.EntitySync\TTT.EntitySync.csproj"/>
+        <ProjectReference Include="..\TTT.Contracts\TTT.Contracts.csproj" />
+        <ProjectReference Include="..\TTT.Database.Contracts\TTT.Database.Contracts.csproj" />
+        <ProjectReference Include="..\TTT.EntitySync\TTT.EntitySync.csproj" />
     </ItemGroup>
 
 </Project>
