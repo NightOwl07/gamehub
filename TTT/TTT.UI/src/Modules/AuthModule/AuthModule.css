@@ -1,0 +1,29 @@
+.login {
+    background: rgb(33, 33, 33);
+}
+
+.pulse-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.pulse-bubble {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #793ef9;
+    margin: 12px;
+  }
+  
+.pulse-bubble-1 {
+    animation: pulse .4s ease 0s infinite alternate;
+}
+.pulse-bubble-2 {
+    animation: pulse .4s ease .2s infinite alternate;
+}
+.pulse-bubble-3 {
+    animation: pulse .4s ease .4s infinite alternate;
+}
+  

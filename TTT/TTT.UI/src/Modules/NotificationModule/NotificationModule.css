@@ -1,0 +1,53 @@
+.animation--boom {
+    animation-name: boom;
+    animation-duration: 1s;
+    transition-property: all;
+    transition-duration: .15s;
+}
+
+@keyframes boom {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+    10%, 20% {
+        transform: scale3d(.98, .98, .98) rotate3d(0, 0, 1, -1deg);
+    }
+    30%, 50%, 70%, 90% {
+        transform: scale3d(1.0, 1.0, 1.0) rotate3d(0, 0, 1, 1deg);
+    }
+    40%, 60%, 80% {
+        transform: scale3d(1.0, 1.0, 1.0) rotate3d(0, 0, 1, -1deg);
+    }
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.animation--shake {
+    animation-name: shake;
+    animation-duration: 1s;
+}
+
+@keyframes shake {
+    from {
+        transform: none;
+    }
+    15% {
+        transform: translate3d(-2%, 0, 0);
+    }
+    30% {
+        transform: translate3d(2%, 0, 0);
+    }
+    45% {
+        transform: translate3d(-2%, 0, 0);
+    }
+    60% {
+        transform: translate3d(2%, 0, 0);
+    }
+    75% {
+        transform: translate3d(0%, 0, 0);
+    }
+    to {
+        transform: none;
+    }
+}
