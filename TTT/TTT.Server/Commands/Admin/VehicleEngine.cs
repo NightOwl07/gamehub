@@ -10,9 +10,12 @@ namespace TTT.Server.Commands.Admin
         [CustomCommandAlias("vehengine")]
         public void SetVehicleEngineMultiplier(TownPlayer player, int multiplier)
         {
-            if (player.Vehicle == null) player?.SendChatMessage("Du bist in keinem Fahrzeug!");
+            if (Utils.Utils.CheckAdmin(player, TTT.Contracts.Base.Enums.PermissionLevel.Administration))
+            {
+                if (player.Vehicle == null) player?.SendChatMessage("Du bist in keinem Fahrzeug!");
 
-            player.Emit("TTT:Utils:SetVehicleEngineMultiplier", multiplier);
+                player.Emit("TTT:Utils:SetVehicleEngineMultiplier", multiplier);
+            }
         }
     }
 }

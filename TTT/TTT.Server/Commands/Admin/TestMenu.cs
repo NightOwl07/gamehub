@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using AltV.Net;
+using AltV.Net.Resources.Chat.Api;
 using CustomCommandsSystem.Common.Attributes;
 using TTT.Contracts.Interfaces.DependencyInjection;
 using TTT.Core.Contracts.Interfaces.Menu;
@@ -472,6 +473,8 @@ namespace TTT.Server.Commands.Admin
         [CustomCommand("testmenu")]
         public void TestMenuCmd(TownPlayer player)
         {
+            if (Utils.Utils.CheckAdmin(player, TTT.Contracts.Base.Enums.PermissionLevel.Administration))
+            { 
             this._menuBuilder.Create("Choose your character", string.Empty, new Point(150, 150))
                 .AddItem("~r~Du hurensohn", "~g~ja du bist einer", "ist mein ernst",
                     (item, s) => { Console.WriteLine("du hurensohn hast dich geschlossen!"); })
@@ -486,6 +489,7 @@ namespace TTT.Server.Commands.Admin
                 .AddCheckboxItem("Mich kann man checken", false, string.Empty,
                     (item, result) => { Console.WriteLine("Du hurensohn"); })
                 .Show(player);
+             }
         }
     }
 }

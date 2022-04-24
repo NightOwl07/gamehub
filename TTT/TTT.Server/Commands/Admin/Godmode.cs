@@ -17,10 +17,13 @@ namespace TTT.Server.Commands.Admin
 
         [CustomCommand("godmode")]
         [CustomCommandAlias("god")]
-        public void GiveWeaponCmd(TownPlayer player)
+        public static void GodmodeCmd(TownPlayer player)
         {
+            if (Utils.Utils.CheckAdmin(player, TTT.Contracts.Base.Enums.PermissionLevel.Support))
+            { 
             player.Invincible = !player.Invincible;
             player.SendChatMessage($"Godmode: {player.Invincible}");
+            }
         }
     }
 }
