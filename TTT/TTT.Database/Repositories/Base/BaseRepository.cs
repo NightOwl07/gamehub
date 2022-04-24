@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using AltV.Net;
 using TTT.Database.Contracts.Attributes;
 using TTT.Database.Contracts.Interfaces.Base;
 using TTT.Database.Contracts.Interfaces.Repositories.Base;
@@ -73,7 +74,19 @@ namespace TTT.Database.Repositories.Base
 
         public virtual Task InsertOneAsync(TEntity document)
         {
-            return Task.Run(() => this._collection.InsertOneAsync(document));
+            return Task.Run(() =>
+            {
+                try
+                {
+                    this._collection.InsertOneAsync(document);
+                }
+                catch(Exception ex)
+                {
+
+                }
+
+
+                });
         }
 
         public void InsertMany(ICollection<TEntity> documents)

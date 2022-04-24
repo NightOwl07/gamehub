@@ -74,7 +74,7 @@ namespace TTT.Server.Handler.Player
                 LastLogin = DateTime.Now,
                 SocialClubId = asyncPlayer.SocialClubId,
                 HardwareId = asyncPlayer.HardwareIdHash,
-                HardwareIdEx = asyncPlayer.HardwareIdExHash
+                //HardwareIdEx = asyncPlayer.HardwareIdExHash
             };
 
             OperationResult<Account> result = await this._accountService.RegisterAccount(account);

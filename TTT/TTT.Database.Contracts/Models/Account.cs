@@ -19,7 +19,7 @@ namespace TTT.Database.Contracts.Models
 
         public ulong HardwareId { get; set; }
 
-        public ulong HardwareIdEx { get; set; }
+        //public ulong HardwareIdEx { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
