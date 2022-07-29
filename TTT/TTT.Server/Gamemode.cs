@@ -71,9 +71,9 @@ namespace TTT.Server
 
             services.AddAllTypes<ITransientScript>();
 
-            this.interactionsService = InteractionsService.CreateBuilder().Build();
+            //this.interactionsService = InteractionsService.CreateBuilder().Build();
 
-            services.AddSingleton(this.interactionsService);
+            //services.AddSingleton(this.interactionsService);
 
             ServiceProvider serviceProvider = services.BuildServiceProvider();
 

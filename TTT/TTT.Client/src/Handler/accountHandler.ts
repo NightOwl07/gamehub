@@ -35,8 +35,9 @@ export default class AccountHandler {
         });
     }
 
-    private onAuthenticationFailed(): void {
+    private onAuthenticationFailed(error: string): void {
         this.browserInstance?.emit("TTT:LoginView:StopLoading");
+        this.browserInstance?.emit("TTT:RegisterView:AuthenticationFailed", error);
     }
 
     private onViewLoginComplete(username: string, password: string): void {

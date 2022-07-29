@@ -47,8 +47,11 @@ namespace TTT.Server.Handler.Player
 
         private async Task OnPlayerDisconnect(TownPlayer player, string reason)
         {
-            if (player == null)
+            if (player?.Account == null)
+            {
+                this._logger.LogDebug($"Player \"{player?.Name}\" disconnected");
                 return;
+            }
 
             this._logger.LogDebug($"Player \"{player.Account.Username}\" disconnected");
         }
@@ -72,7 +75,7 @@ namespace TTT.Server.Handler.Player
             if (!(result?.Success ?? false))
             {
                 this._notificationService.SendErrorNotification(player, "Fehler!", result?.FirstErrorMessage);
-                player.Emit("TTT:AccountHandler:AuthenticationFailed");
+                player.Emit("TTT:AccountHandler:AuthenticationFailed", result?.FirstErrorMessage);
                 return;
             }
 

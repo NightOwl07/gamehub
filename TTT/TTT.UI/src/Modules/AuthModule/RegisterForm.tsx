@@ -104,6 +104,7 @@ export default class RegisterForm extends React.Component<RegisterFormProps, Reg
 
     public componentDidMount() {
         this.setState({ isLoading: false });
+        alt.on("TTT:RegisterView:AuthenticationFailed", this.onAuthenticationFailed.bind(this));
     }
 
     public onNavigateForward() {
@@ -138,6 +139,10 @@ export default class RegisterForm extends React.Component<RegisterFormProps, Reg
         }
 
         this.setState({ passwordrepeat: e.target.value, errorMessage: "" });
+    }
+
+    public onAuthenticationFailed(errorMessage: string) {
+        this.setState({ errorMessage: errorMessage, isLoading: false });
     }
 }
 

@@ -39,7 +39,7 @@ namespace TTT.Server.Commands.Admin
 
             await Task.Delay(450);
 
-            await player.EmitAsync("TTT:Utils:SetPedIntoVehicle", veh);
+            player.Emit("TTT:Utils:SetPedIntoVehicle", veh);
         }
     }
 }
