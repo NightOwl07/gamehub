@@ -19,6 +19,7 @@ namespace TTT.Database.Repositories.Base
         {
             IMongoDatabase database = new MongoClient("mongodb://localhost:27017").GetDatabase("ttt");
             this._collection = database.GetCollection<TEntity>(this.GetCollectionName(typeof(TEntity)));
+            this._collection.InsertOne((TEntity)Activator.CreateInstance(typeof(TEntity)));
         }
 
         public virtual IQueryable<TEntity> AsQueryable()

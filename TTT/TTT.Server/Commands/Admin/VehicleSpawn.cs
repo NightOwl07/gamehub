@@ -22,30 +22,24 @@ namespace TTT.Server.Commands.Admin
         [CustomCommandAlias("spawnveh")]
         public async Task SpawnVehicle(ITownPlayer player, string model, int charId = 0)
         {
-            await using IAsyncContext asyncContext = AsyncContext.Create();
-
-            if (!player.TryToAsync(asyncContext, out ITownPlayer asyncPlayer)) return;
-
             ITownVehicle veh =
-                await AltAsync.Do(() => Alt.CreateVehicle(Alt.Hash(model), asyncPlayer.Position, new Rotation())) as
+                await AltAsync.Do(() => Alt.CreateVehicle(Alt.Hash(model), player.Position, new Rotation())) as
                     ITownVehicle;
 
             if (veh == null)
             {
-                this._notificationService.SendErrorNotification(asyncPlayer, "Fehler!",
+                this._notificationService.SendErrorNotification(player, "Fehler!",
                     "Fehler beim erstellen des Fahrzeugs!");
                 return;
             }
-
-            if (!veh.TryToAsync(asyncContext, out ITownVehicle asyncVehicle)) return;
-
-            asyncVehicle.OwnerId = charId == 0 ? asyncPlayer.Account.Id.ToString() : charId.ToString(); // TODO: use character id if available
-            asyncVehicle.NumberplateText = "TTT BOSS";
-            asyncVehicle.SetStreamSyncedMetaData("OwnerId", asyncVehicle.OwnerId.ToString());
+            
+            veh.OwnerId = charId == 0 ? player.Account.Id.ToString() : charId.ToString(); // TODO: use character id if available
+            veh.NumberplateText = "TTT BOSS";
+            veh.SetStreamSyncedMetaData("OwnerId", veh.OwnerId.ToString());
 
             await Task.Delay(450);
 
-            await asyncPlayer.EmitAsync("TTT:Utils:SetPedIntoVehicle", veh);
+            await player.EmitAsync("TTT:Utils:SetPedIntoVehicle", veh);
         }
     }
 }

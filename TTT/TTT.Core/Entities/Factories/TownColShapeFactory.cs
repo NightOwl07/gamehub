@@ -6,9 +6,9 @@ namespace TTT.Core.Entities.Factories
 {
     public class TownColShapeFactory : IBaseObjectFactory<IColShape>
     {
-        public IColShape Create(IServer server, IntPtr colShapePointer)
+        public IColShape Create(ICore core, IntPtr colShapePointer)
         {
-            return new TownColShape(server, colShapePointer);
+            return new TownColShape(core, colShapePointer);
         }
     }
 }

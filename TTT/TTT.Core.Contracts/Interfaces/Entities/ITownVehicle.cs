@@ -1,10 +1,9 @@
-﻿using AltV.Net.Async;
-using AltV.Net.Elements.Entities;
+﻿using AltV.Net.Elements.Entities;
 using TTT.EntitySync;
 
 namespace TTT.Core.Contracts.Interfaces.Entities
 {
-    public interface ITownVehicle : IVehicle, IAsyncConvertible<ITownVehicle>
+    public interface ITownVehicle : IVehicle
     {
         public string OwnerId { get; set; }
 

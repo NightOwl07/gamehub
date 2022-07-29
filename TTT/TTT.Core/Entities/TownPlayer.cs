@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AltV.Net;
+﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Async.Elements.Entities;
 using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TTT.Core.Contracts.Interfaces.Entities;
 using TTT.Database.Contracts.Models;
 
 namespace TTT.Core.Entities
 {
-    public class TownPlayer : Player, ITownPlayer
+    public class TownPlayer : AsyncPlayer, ITownPlayer
     {
-        public TownPlayer(IServer server, IntPtr nativePointer, ushort id) : base(server, nativePointer, id)
+        public TownPlayer(ICore server, IntPtr nativePointer, ushort id) : base(server, nativePointer, id)
         {
         }
 
@@ -23,11 +22,6 @@ namespace TTT.Core.Entities
         [JsonIgnore] public Menu.Menu ActiveMenu { get; set; }
 
         [JsonIgnore] public Account Account { get; set; }
-
-        public ITownPlayer ToAsync(IAsyncContext asyncContext)
-        {
-            return new Async(this, asyncContext);
-        }
 
         public void FadeScreenIn(int milliseconds)
         {
@@ -47,25 +41,6 @@ namespace TTT.Core.Entities
                 await Task.Delay(fadeScreenOutMilliseconds * 2);
                 await this.EmitAsync("TTT:PlayerHandler:FadeInScreen", fadeScreenInMilliseconds);
             });
-        }
-
-        private class Async : AsyncPlayer<ITownPlayer>, ITownPlayer
-        {
-            public Async(ITownPlayer player, IAsyncContext asyncContext) : base(player, asyncContext)
-            {
-            }
-
-            [JsonIgnore]
-            public Account Account
-            {
-                get => this.BaseObject.Account;
-                set => this.BaseObject.Account = value;
-            }
-
-            public ITownPlayer ToAsync(IAsyncContext asyncContext)
-            {
-                return asyncContext == this.AsyncContext ? this : new Async(this.BaseObject, asyncContext);
-            }
         }
     }
 }

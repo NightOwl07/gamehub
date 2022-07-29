@@ -1,10 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using AltV.Net;
+﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 using TTT.Contracts.Base;
 using TTT.Contracts.Interfaces.DependencyInjection;
 using TTT.Core.Contracts.Interfaces.Entities;
@@ -38,17 +37,12 @@ namespace TTT.Server.Handler.Player
 
         private async Task OnPlayerConnect(TownPlayer player, string reason)
         {
-            await using (IAsyncContext asyncContext = AsyncContext.Create())
-            {
-                if (!player.TryToAsync(asyncContext, out IPlayer asyncPlayer)) return;
+            this._logger.LogDebug($"Player \"{player.Name}\" connected");
 
-                this._logger.LogDebug($"Player \"{asyncPlayer.Name}\" connected");
+            await Task.Delay(1000);
 
-                await Task.Delay(1000);
-
-                asyncPlayer.Emit("TTT:AccountHandler:ShowWelcome");
-                asyncPlayer.Visible = false;
-            }
+            player.Emit("TTT:AccountHandler:ShowWelcome");
+            player.Visible = false;
         }
 
         private async Task OnPlayerDisconnect(TownPlayer player, string reason)
@@ -61,10 +55,6 @@ namespace TTT.Server.Handler.Player
 
         private async Task RegisterAccount(TownPlayer player, string email, string username, string password)
         {
-            await using IAsyncContext asyncContext = AsyncContext.Create();
-
-            if (!player.TryToAsync(asyncContext, out IPlayer asyncPlayer)) return;
-
             Account account = new()
             {
                 Username = username,
@@ -72,60 +62,55 @@ namespace TTT.Server.Handler.Player
                 Email = email,
                 CreatedOn = DateTime.Now,
                 LastLogin = DateTime.Now,
-                SocialClubId = asyncPlayer.SocialClubId,
-                HardwareId = asyncPlayer.HardwareIdHash,
-                HardwareIdEx = asyncPlayer.HardwareIdExHash
+                SocialClubId = player.SocialClubId,
+                HardwareId = player.HardwareIdHash,
+                HardwareIdEx = player.HardwareIdExHash
             };
 
             OperationResult<Account> result = await this._accountService.RegisterAccount(account);
 
             if (!(result?.Success ?? false))
             {
-                this._notificationService.SendErrorNotification(asyncPlayer, "Fehler!", result?.FirstErrorMessage);
-                asyncPlayer.Emit("TTT:AccountHandler:AuthenticationFailed");
+                this._notificationService.SendErrorNotification(player, "Fehler!", result?.FirstErrorMessage);
+                player.Emit("TTT:AccountHandler:AuthenticationFailed");
                 return;
             }
 
             player.Account = result.Result;
 
-            this._notificationService.SendSuccessNotification(asyncPlayer, "Hurra!",
+            this._notificationService.SendSuccessNotification(player, "Hurra!",
                 "Du hast dich erfolgreich angemeldet!");
 
-            asyncPlayer.Emit("TTT:AccountHandler:RegisterSuccess");
+            player.Emit("TTT:AccountHandler:RegisterSuccess");
             await Task.Delay(200);
-            asyncPlayer.Spawn(new Position(0, 0, 75));
+            player.Spawn(new Position(0, 0, 75));
         }
 
         private async Task LogInAccount(ITownPlayer player, string username, string password)
         {
-            await using (IAsyncContext asyncContext = AsyncContext.Create())
+            OperationResult<Account> result = await this._accountService.LogInAccount(username, password);
+
+            if (!(result?.Success ?? false))
             {
-                if (!player.TryToAsync(asyncContext, out ITownPlayer asyncPlayer)) return;
-
-                OperationResult<Account> result = await this._accountService.LogInAccount(username, password);
-
-                if (!(result?.Success ?? false))
-                {
-                    this._notificationService.SendErrorNotification(asyncPlayer, "Fehler!", result?.FirstErrorMessage);
-                    asyncPlayer.Emit("TTT:AccountHandler:AuthenticationFailed");
-                    return;
-                }
-
-                asyncPlayer.Account = result.Result;
-                asyncPlayer.SetStreamSyncedMetaData("Id", asyncPlayer.Account.Id.ToString());
-
-                this._notificationService.SendSuccessNotification(asyncPlayer, "Hurra!",
-                    "Du hast dich erfolgreich angemeldet!");
-
-                Position spawn = new(0, 0, 75);
-
-                asyncPlayer.Emit("TTT:PlayerHandler:SwitchInPlayer", false, spawn);
-                asyncPlayer.Emit("TTT:AccountHandler:LoginSuccess");
-                asyncPlayer.Visible = true;
-                asyncPlayer.Spawn(new Position(0, 0, 75));
-                await Task.Delay(2500);
-                asyncPlayer.Emit("TTT:PlayerHandler:SwitchInPlayer", true, spawn);
+                this._notificationService.SendErrorNotification(player, "Fehler!", result?.FirstErrorMessage);
+                player.Emit("TTT:AccountHandler:AuthenticationFailed");
+                return;
             }
+
+            player.Account = result.Result;
+            player.SetStreamSyncedMetaData("Id", player.Account.Id.ToString());
+
+            this._notificationService.SendSuccessNotification(player, "Hurra!",
+                "Du hast dich erfolgreich angemeldet!");
+
+            Position spawn = new(0, 0, 75);
+
+            player.Emit("TTT:PlayerHandler:SwitchInPlayer", false, spawn);
+            player.Emit("TTT:AccountHandler:LoginSuccess");
+            player.Visible = true;
+            player.Spawn(new Position(0, 0, 75));
+            await Task.Delay(2500);
+            player.Emit("TTT:PlayerHandler:SwitchInPlayer", true, spawn);
         }
     }
 }

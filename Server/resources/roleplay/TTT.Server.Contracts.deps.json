@@ -15,7 +15,10 @@
           "TTT.Server.Contracts.dll": {}
         }
       },
-      "AltV.Net/9.0.4": {
+      "AltV.Net/12.0.1": {
+        "dependencies": {
+          "AltV.Net.Shared": "12.0.1"
+        },
         "runtime": {
           "lib/net6.0/AltV.Net.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -23,14 +26,33 @@
           }
         }
       },
-      "MongoDB.Bson/2.15.0": {
+      "AltV.Net.CApi/12.0.1": {
+        "runtime": {
+          "lib/net6.0/AltV.Net.CApi.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "AltV.Net.Shared/12.0.1": {
+        "dependencies": {
+          "AltV.Net.CApi": "12.0.1"
+        },
+        "runtime": {
+          "lib/net6.0/AltV.Net.Shared.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "MongoDB.Bson/2.17.0": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "5.0.0"
         },
         "runtime": {
           "lib/netstandard2.1/MongoDB.Bson.dll": {
-            "assemblyVersion": "2.15.0.0",
-            "fileVersion": "2.15.0.0"
+            "assemblyVersion": "2.17.0.0",
+            "fileVersion": "2.17.0.0"
           }
         }
       },
@@ -42,8 +64,8 @@
       },
       "TTT.Database.Contracts/1.0.0": {
         "dependencies": {
-          "AltV.Net": "9.0.4",
-          "MongoDB.Bson": "2.15.0",
+          "AltV.Net": "12.0.1",
+          "MongoDB.Bson": "2.17.0",
           "TTT.Contracts": "1.0.0"
         },
         "runtime": {
@@ -58,19 +80,33 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AltV.Net/9.0.4": {
+    "AltV.Net/12.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nBCzW5LeK8BThi7qM0D36t5c0LCdxGUxPW4Lcs0mf3EVjnrcsBu1u3VJwoR4FK3Hj41XsRQWszqZqRTcqL114w==",
-      "path": "altv.net/9.0.4",
-      "hashPath": "altv.net.9.0.4.nupkg.sha512"
+      "sha512": "sha512-zXTYoWkMOUaYiwBdqMsATzxMKhFTTDC1II8TPFjbeXhcutjSNyoOl/WVapGesIFrFWDHdtKSQMneIsbd26qHCA==",
+      "path": "altv.net/12.0.1",
+      "hashPath": "altv.net.12.0.1.nupkg.sha512"
     },
-    "MongoDB.Bson/2.15.0": {
+    "AltV.Net.CApi/12.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-5uPSADVLydGJ4CbmjrsQn7v3NugSdx6htJ4cMNbo8youlfBa5v6YbEqztbipnl+dT1L/YBkJKZ1DDp6LWl0Hqw==",
-      "path": "mongodb.bson/2.15.0",
-      "hashPath": "mongodb.bson.2.15.0.nupkg.sha512"
+      "sha512": "sha512-o4bV17AFgz3b9PW2wJMBIWzR0I+ttFlZe/97cVXOiZBRTW6WwjXojkSQ6dOloDKOtbYMGtRiQ108M+hjoKIuvw==",
+      "path": "altv.net.capi/12.0.1",
+      "hashPath": "altv.net.capi.12.0.1.nupkg.sha512"
+    },
+    "AltV.Net.Shared/12.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Zj44ivDuBvM8C0eRCM1m9rAHeyn2ckGLKLBEqMT18w/jpThGIuTk7r5iJF38nkcnkSXT3mtOSJuiXtUmSVYpsA==",
+      "path": "altv.net.shared/12.0.1",
+      "hashPath": "altv.net.shared.12.0.1.nupkg.sha512"
+    },
+    "MongoDB.Bson/2.17.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wGUX8GMQ0DYG68u1ENAUtJTx6cmQTt6/BfMjqB+Q+aWu2ZkBZ09mA1QbBU5mcbVqulF5U72bGzxChtjYxaS9Dg==",
+      "path": "mongodb.bson/2.17.0",
+      "hashPath": "mongodb.bson.2.17.0.nupkg.sha512"
     },
     "System.Runtime.CompilerServices.Unsafe/5.0.0": {
       "type": "package",

@@ -29,41 +29,21 @@ namespace TTT.Server.Handler.Vehicle
 
         private async Task OnToggleVehicleEngine(ITownPlayer player, ITownVehicle vehicle)
         {
-            await using (IAsyncContext asyncContext = AsyncContext.Create())
-            {
-                if (!player.TryToAsync(asyncContext, out ITownPlayer asyncPlayer) ||
-                    !vehicle.TryToAsync(asyncContext, out ITownVehicle asyncVehicle))
-                    return;
-
-                asyncVehicle.EngineOn = !asyncVehicle.EngineOn;
-            }
+            vehicle.EngineOn = !vehicle.EngineOn;
         }
 
         private async Task OnPlayerLeaveVehicle(ITownVehicle vehicle, ITownPlayer player, byte seat)
         {
-            await using (IAsyncContext asyncContext = AsyncContext.Create())
-            {
-                if (!player.TryToAsync(asyncContext, out ITownPlayer asyncPlayer) ||
-                    !vehicle.TryToAsync(asyncContext, out ITownVehicle asyncVehicle))
-                    return;
-            }
         }
 
         private async Task OnLockVehicle(ITownPlayer player, ITownVehicle vehicle)
         {
-            await using (IAsyncContext asyncContext = AsyncContext.Create())
-            {
-                if (!player.TryToAsync(asyncContext, out ITownPlayer asyncPlayer) ||
-                    !vehicle.TryToAsync(asyncContext, out ITownVehicle asyncVehicle))
-                    return;
+            vehicle.Locked = !vehicle.Locked;
+            vehicle.LockState = vehicle.Locked ? VehicleLockState.Locked : VehicleLockState.Unlocked;
+            vehicle.SetStreamSyncedMetaData("Locked", vehicle.Locked);
 
-                asyncVehicle.Locked = !asyncVehicle.Locked;
-                asyncVehicle.LockState = asyncVehicle.Locked ? VehicleLockState.Locked : VehicleLockState.Unlocked;
-                asyncVehicle.SetStreamSyncedMetaData("Locked", asyncVehicle.Locked);
-
-                Utils.Utils.EmitInRange("TTT:Client:VehicleHandler:LockVehicle", asyncVehicle.Position, 100,
-                    asyncVehicle, asyncVehicle.Locked);
-            }
+            Utils.Utils.EmitInRange("TTT:Client:VehicleHandler:LockVehicle", vehicle.Position, 100,
+                vehicle, vehicle.Locked);
         }
     }
 }

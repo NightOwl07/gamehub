@@ -1,5 +1,4 @@
-﻿using System.IO;
-using AltV.Net;
+﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
 using AltV.Net.EntitySync;
@@ -10,6 +9,10 @@ using CustomCommandsSystem.Integration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
+using NLog;
+using NLog.Extensions.Logging;
+using System.IO;
 using TTT.Contracts.Interfaces.DependencyInjection;
 using TTT.Core;
 using TTT.Core.Entities.Factories;
@@ -21,6 +24,10 @@ namespace TTT.Server
 {
     public class Gamemode : AsyncResource
     {
+        private InteractionsService interactionsService;
+
+        private Logger logger = LogManager.GetCurrentClassLogger();
+
         public Gamemode()
             : base(new ActionTickSchedulerFactory())
         {
@@ -28,6 +35,10 @@ namespace TTT.Server
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false, true)
                 .Build();
+            ConsoleFormatterOptions loggerOptions = new ConsoleFormatterOptions()
+            {
+               
+            };
         }
 
         public IConfiguration Configuration { get; }
@@ -39,11 +50,16 @@ namespace TTT.Server
             ServiceCollection services = new();
 
             services.AddSingleton(this.Configuration);
-
+      
             services.AddLogging(config => config
-                .AddConfiguration(this.Configuration.GetSection("Logging"))
+                .ClearProviders()
+                .SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Debug)
                 .AddDebug()
-                .AddConsole());
+                .AddConsole()
+                .AddNLog(new NLogProviderOptions
+                {
+                    
+                }));
 
             services.AddCoreServiceCollection();
             services.AddDatabaseServiceCollection();
@@ -55,22 +71,24 @@ namespace TTT.Server
 
             services.AddAllTypes<ITransientScript>();
 
+            this.interactionsService = InteractionsService.CreateBuilder().Build();
+
+            services.AddSingleton(this.interactionsService);
+
             ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-            ILogger<Gamemode> logger = serviceProvider.GetService<ILogger<Gamemode>>();
-            logger?.LogDebug("Dependency Injection initialized successfully");
+            this.logger.Debug("Dependency Injection initialized successfully");
 
             serviceProvider.InstanciateStartupScripts();
 
             Settings.Config.ServiceProviderForInstances = serviceProvider;
             Alt.Core.RegisterCustomCommands();
-            AltInteractions.Init();
         }
 
         public override void OnStop()
         {
             Alt.Core.UnregisterCustomCommands();
-            AltInteractions.Dispose();
+            this.interactionsService?.Dispose();
         }
 
         private void InitEntitySync()

@@ -24,18 +24,6 @@ namespace TTT.EntitySync
             this._entities.Remove(entity);
         }
 
-        public override void UpdateEntityPosition(IEntity entity, in Vector3 newPosition)
-        {
-        }
-
-        public override void UpdateEntityRange(IEntity entity, uint range)
-        {
-        }
-
-        public override void UpdateEntityDimension(IEntity entity, int dimension)
-        {
-        }
-
         private static bool CanSeeOtherDimension(int dimension, int otherDimension)
         {
             return dimension switch
@@ -49,6 +37,18 @@ namespace TTT.EntitySync
         public override IList<IEntity> Find(Vector3 position, int dimension)
         {
             return this._entities.Where(entity => CanSeeOtherDimension(dimension, entity.Dimension)).ToList();
+        }
+
+        public override void UpdateEntityPosition(IEntity entity, in Vector3 oldPosition, in Vector3 newPosition)
+        {
+        }
+
+        public override void UpdateEntityRange(IEntity entity, uint oldRange, uint newRange)
+        {
+        }
+
+        public override void UpdateEntityDimension(IEntity entity, int oldDimension, int newDimension)
+        {
         }
     }
 }

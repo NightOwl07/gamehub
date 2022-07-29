@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "TTT.Core": {
+      "commandName": "Project"
+    },
+    "Profil \"1\"": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Git\\gamehub\\Server\\altv-server.exe",
+      "workingDirectory": "C:\\Git\\gamehub\\Server"
+    }
+  }
+}

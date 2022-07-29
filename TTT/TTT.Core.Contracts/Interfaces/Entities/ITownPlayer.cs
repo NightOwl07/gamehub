@@ -4,7 +4,7 @@ using TTT.Database.Contracts.Models;
 
 namespace TTT.Core.Contracts.Interfaces.Entities
 {
-    public interface ITownPlayer : IPlayer, IAsyncConvertible<ITownPlayer>
+    public interface ITownPlayer : IPlayer
     {
         Account Account { get; set; }
     }

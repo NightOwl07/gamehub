@@ -6,7 +6,7 @@ namespace TTT.Core.Entities
 {
     public class TownColShape : ColShape
     {
-        public TownColShape(IServer server, IntPtr nativePointer) : base(server, nativePointer)
+        public TownColShape(ICore core, IntPtr nativePointer) : base(core, nativePointer)
         {
         }
     }
