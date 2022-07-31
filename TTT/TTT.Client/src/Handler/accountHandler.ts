@@ -24,15 +24,11 @@ export default class AccountHandler {
     }
 
     private async onRegisterSuccess(): Promise<void> {
-        return this.browserInstance?.hideModule("welcome").then(() => {
-            this.cleanUp();
-        });
+        return this.browserInstance?.hideModule("welcome").then(this.cleanUp);
     }
 
     private async onLoginSuccess(): Promise<void> {
-        return this.browserInstance?.hideModule("welcome").then(() => {
-            this.cleanUp();
-        });
+        return this.browserInstance?.hideModule("welcome").then(this.cleanUp);
     }
 
     private onAuthenticationFailed(error: string): void {
