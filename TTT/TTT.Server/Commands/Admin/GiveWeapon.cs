@@ -1,9 +1,9 @@
-﻿using System;
-using AltV.Net;
+﻿using AltV.Net;
 using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
 using CustomCommandsSystem.Common.Attributes;
 using Microsoft.Extensions.Logging;
+using System;
 using TTT.Contracts.Interfaces.DependencyInjection;
 using TTT.Core.Entities;
 

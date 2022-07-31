@@ -60,8 +60,10 @@ export default class NotificationModule extends BaseModule<NotificationModulePro
         );
     }
 
-    public moduleInit() {
+    public componentDidMount(): void {
         alt.on("TTT:NotificationView:NewNotification", this.newNotification.bind(this));
+
+        this.newNotification(NotificationType.Info, "Welcome", "Welcome to TTT", 5000);
     }
 
     public newNotification(type: number, title: string, message: string, duration: number) {
@@ -72,7 +74,7 @@ export default class NotificationModule extends BaseModule<NotificationModulePro
             type: type,
             animate: true
         }
-
+        
         this.setState(prevState => ({ notifications: [inNotification, ...prevState.notifications] }));
 
         setTimeout(() => {

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.Extensions.Logging;
-using TTT.Contracts.Base;
+﻿using Microsoft.Extensions.Logging;
 using TTT.Database.Contracts.Interfaces.Repositories;
 using TTT.Database.Contracts.Models;
 using TTT.Database.Repositories.Base;

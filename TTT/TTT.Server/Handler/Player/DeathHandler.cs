@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
-using AltV.Net;
-using AltV.Net.Async;
+﻿using AltV.Net;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 using TTT.Contracts.Interfaces.DependencyInjection;
 using TTT.Core.Entities;
 
@@ -33,7 +32,7 @@ namespace TTT.Server.Handler.Player
             player.Injuries?.Clear();
             player.RemoveAllWeapons();
 
-            await player.SpawnAsync(new Position(0f, 0f, 75f));
+            player.Spawn(new Position(0f, 0f, 75f));
         }
     }
 }
